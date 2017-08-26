@@ -69,6 +69,7 @@ public class Woman extends Person {
 				if (this.proposals.contains(man)) {
 					this.setPair(man);
 					man.setPair(this);
+					this.proposals.clear();
 					return;
 				}
 			}

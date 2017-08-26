@@ -18,6 +18,5 @@ public class GenderMismatchException extends Exception {
 
 	public GenderMismatchException(String message, Throwable cause) {
 		super(cause);
-	}
-	
+	}	
 }

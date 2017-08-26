@@ -9,7 +9,6 @@ public class Main {
 
 	public static void main(String[] args) {
 			
-		System.out.println("Start");
 		try {
 	
 			Man m1 = new Man(1, "Adam");
@@ -21,7 +20,6 @@ public class Main {
 			Woman w2 = new Woman(6, "Betty");
 			Woman w3 = new Woman(7, "Chloe");
 			Woman w4 = new Woman(8, "Diane");
-			
 			
 			m1.setPreferenceList(Arrays.asList(w1, w2, w3, w4));
 			m2.setPreferenceList(Arrays.asList(w1, w4, w3, w2));
@@ -50,14 +48,14 @@ public class Main {
 						man.proposeBestSingle();
 				}
 
+				System.out.println("\nCycle #"+cycleIndex);
+
 				for (Woman woman : womanList) {
 					System.out.println(woman.getName()+" proporsals = " + woman.getProposals());
 					
 					if (woman.isSingle())
 						woman.agreeBestProposal();
 				}
-
-				System.out.println("Cycle #"+cycleIndex);
 				
 				for (Woman woman : womanList) {
 					if (!woman.isSingle()) {
@@ -79,9 +77,9 @@ public class Main {
 				}				
 				++cycleIndex;
 				
-				if (cycleIndex > 5) break;
 			}
 			
+			System.out.println("\nThe final stable marriege set: ");
 			//Log result
 			for (Woman woman : womanList) {
 				if (!woman.isSingle()) {
@@ -100,10 +98,8 @@ public class Main {
 				else {
 					System.out.println(man.getName() +" is single yet" );
 				}
-			}
-			
-			
-			System.out.println("Done");
+			}			
+
 		} catch (GenderMismatchException ex) {
 			ex.printStackTrace();
 		}
@@ -118,5 +114,4 @@ public class Main {
 		}
 		return false;
 	}
-
 }
