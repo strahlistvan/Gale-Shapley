@@ -34,13 +34,15 @@ public class Main {
 			manList.add(m1);
 			manList.add(m2);
 			manList.add(m3);
-
+			manList.add(m4);
+			
 			womanList.add(w1);
 			womanList.add(w2);
 			womanList.add(w3);	
+			womanList.add(w4);
 			
 			//Gale-Shapley algorithm starts here
-			
+			int cycleIndex = 1;
 			while (hasSingleWoman()) {
 				for (Man man : manList) {
 					if (man.isSingle())
@@ -51,13 +53,32 @@ public class Main {
 					if (woman.isSingle())
 						woman.agreeBestProposal();
 				}
-				
-			}
-			System.out.println(w1.getName() +"'s pair = " + w1.getPair().getName());
-			System.out.println(w2.getName() +"'s pair = " + w2.getPair().getName());
-			System.out.println(w3.getName() +"'s pair = " + w3.getPair().getName());
-			System.out.println(w4.getName() +"'s pair = " + w3.getPair().getName());
 
+				System.out.println("Cycle #"+cycleIndex);
+				
+				for (Woman woman : womanList) {
+					if (!woman.isSingle()) {
+						System.out.println(woman.getName() +"'s pair = " + woman.getPair().getName());
+					}
+					else {
+						System.out.println(woman.getName() +" is single yet" );
+					}
+				}
+				
+				++cycleIndex;
+				
+				if (cycleIndex > 3) break;
+			}
+			
+			//Log result
+			for (Woman woman : womanList) {
+				if (!woman.isSingle()) {
+					System.out.println(woman.getName() +"'s pair = " + woman.getPair().getName());
+				}
+				else {
+					System.out.println(woman.getName() +" is single yet" );
+				}
+			}
 			
 			
 			System.out.println("Done");
