@@ -1,8 +1,11 @@
 package hu.algorithms.galeshapley;
 
-import java.util.List;
+import java.util.*;
 
 public class Woman extends Person {
+	
+	private Set<Man> proposals = new HashSet<Man>();
+	
 	public Woman() {
 		super();
 	}
@@ -24,7 +27,7 @@ public class Woman extends Person {
 			throws GenderMismatchException {
 		
 		Woman.pairGenderChecker(man);
-		System.out.println(this.getName() + " pair is " + man.getName());
+	//	System.out.println(this.getName() + " pair is " + man.getName());
 		super.setPair(man);
 	}
 	
@@ -37,6 +40,17 @@ public class Woman extends Person {
 		super.setPreferenceList(womanList);
 	}
 	
+	public Set<Man> getProposals() {
+		return proposals;
+	}
+	
+	public void addProporsal(Person man) 
+			throws GenderMismatchException {
+		Woman.pairGenderChecker(man);
+		
+		this.proposals.add((Man) man);
+	}
+	
 	public Integer getPreferenceIndex(Man man) 
 			throws GenderMismatchException {
 		Woman.pairGenderChecker(man);
@@ -46,5 +60,19 @@ public class Woman extends Person {
 	public boolean preferredFirstOverSecond(Man firstMan, Man secondMan)
 			throws GenderMismatchException {
 		return super.preferredFirstOverSecond(firstMan, secondMan);
+	}
+	
+	public void agreeBestProposal() {
+		try {
+			for (int i=0; i<this.preferenceList.size(); ++i) {
+				Man man = (Man) this.preferenceList.get(i);
+				if (this.proposals.contains(man)) {
+					this.setPair(man);
+					man.setPair(this);
+				}
+			}
+		} catch (GenderMismatchException ex) {
+			ex.printStackTrace();
+		}
 	}
 }

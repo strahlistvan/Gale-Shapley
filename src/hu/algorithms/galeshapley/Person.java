@@ -25,15 +25,19 @@ public class Person {
 	public Integer getId() {
 		return id;
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 	public List<Person> getPreferenceList() {
 		return preferenceList;
@@ -56,6 +60,7 @@ public class Person {
 	public boolean isSingle() {
 		return (this.getPair() == null);
 	}
+	
 	public Integer getPreferenceIndex(Person person) 
 			throws GenderMismatchException {
 		return this.preferenceList.indexOf(person);
