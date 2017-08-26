@@ -22,14 +22,15 @@ public class Main {
 			Woman w3 = new Woman(7, "Chloe");
 			Woman w4 = new Woman(8, "Diane");
 			
+			
 			m1.setPreferenceList(Arrays.asList(w1, w2, w3, w4));
 			m2.setPreferenceList(Arrays.asList(w1, w4, w3, w2));
 			m3.setPreferenceList(Arrays.asList(w2, w1, w3, w4));
-			m4.setPreferenceList(Arrays.asList(w2, w1, w3, w4));
+			m4.setPreferenceList(Arrays.asList(w4, w3, w3, w1));
 			w1.setPreferenceList(Arrays.asList(m4, m3, m1, m2));
 			w2.setPreferenceList(Arrays.asList(m2, m4, m1, m3));
 			w3.setPreferenceList(Arrays.asList(m4, m1, m2, m3));
-			w3.setPreferenceList(Arrays.asList(m3, m2, m1, m4));
+			w4.setPreferenceList(Arrays.asList(m3, m2, m1, m4));
 			
 			manList.add(m1);
 			manList.add(m2);
@@ -50,6 +51,8 @@ public class Main {
 				}
 
 				for (Woman woman : womanList) {
+					System.out.println(woman.getName()+" proporsals = " + woman.getProposals());
+					
 					if (woman.isSingle())
 						woman.agreeBestProposal();
 				}
@@ -65,9 +68,18 @@ public class Main {
 					}
 				}
 				
+				//Log result
+				for (Man man : manList) {
+					if (!man.isSingle()) {
+						System.out.println(man.getName() +"'s pair = " + man.getPair().getName());
+					}
+					else {
+						System.out.println(man.getName() +" is single yet" );
+					}
+				}				
 				++cycleIndex;
 				
-				if (cycleIndex > 3) break;
+				if (cycleIndex > 5) break;
 			}
 			
 			//Log result
@@ -77,6 +89,16 @@ public class Main {
 				}
 				else {
 					System.out.println(woman.getName() +" is single yet" );
+				}
+			}
+			
+			//Log result
+			for (Man man : manList) {
+				if (!man.isSingle()) {
+					System.out.println(man.getName() +"'s pair = " + man.getPair().getName());
+				}
+				else {
+					System.out.println(man.getName() +" is single yet" );
 				}
 			}
 			

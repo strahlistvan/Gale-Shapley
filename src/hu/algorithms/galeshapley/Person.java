@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Person {
 	
+
 	protected Integer id;
 	protected String name;
 	protected List<Person> preferenceList;
@@ -70,5 +71,16 @@ public class Person {
 			throws GenderMismatchException {
 		return (this.getPreferenceIndex(firstMan) < this.getPreferenceIndex(secondMan));
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Person [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append("]");
+		return builder.toString();
+	}	
 	
 }

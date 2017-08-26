@@ -44,13 +44,13 @@ public class Woman extends Person {
 		return proposals;
 	}
 	
-	public void addProporsal(Person man) 
+	public void addProposal(Person man) 
 			throws GenderMismatchException {
 		Woman.pairGenderChecker(man);
 		
 		this.proposals.add((Man) man);
 	}
-	
+		
 	public Integer getPreferenceIndex(Man man) 
 			throws GenderMismatchException {
 		Woman.pairGenderChecker(man);
@@ -69,8 +69,10 @@ public class Woman extends Person {
 				if (this.proposals.contains(man)) {
 					this.setPair(man);
 					man.setPair(this);
+					return;
 				}
 			}
+			this.proposals.clear();
 		} catch (GenderMismatchException ex) {
 			ex.printStackTrace();
 		}

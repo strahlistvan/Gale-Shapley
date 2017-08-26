@@ -53,7 +53,8 @@ public class Man extends Person {
 			for (int i=0; i<this.preferenceList.size(); ++i) {
 				Woman woman = (Woman) this.preferenceList.get(i);
 				if (woman.isSingle()) {
-					woman.addProporsal(this);
+					woman.addProposal(this);
+					return;
 				}
 			}
 		} catch (GenderMismatchException ex) {
