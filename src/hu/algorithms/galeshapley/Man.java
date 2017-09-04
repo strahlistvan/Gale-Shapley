@@ -1,6 +1,6 @@
 package hu.algorithms.galeshapley;
 
-import java.util.List;
+import java.util.*;
 
 public class Man extends Person {
 
@@ -14,6 +14,8 @@ public class Man extends Person {
 	
 	public static void pairGenderChecker(Person person) 
 			throws GenderMismatchException {
+		if (person == null)
+			return;
 		if (!(person instanceof Woman)) {
 			System.err.println("#" + person.getId() + " " + person.getName()
 				+ " is not a Woman!");
@@ -24,11 +26,10 @@ public class Man extends Person {
 	public void setPair(Person woman) 
 			throws GenderMismatchException {
 		Man.pairGenderChecker(woman);
-	//	System.out.println(this.getName() + " pair is " + woman.getName());
 		super.setPair(woman);
 	}
 	
-	public void setPreferenceList(List<Person> womanList) 
+	public void setPreferenceList(LinkedList<Person> womanList) 
 			throws GenderMismatchException {
 		
 		for(Person w: womanList) {
@@ -57,6 +58,16 @@ public class Man extends Person {
 					return;
 				}
 			}
+		} catch (GenderMismatchException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void proposeNextWoman() {
+		try {
+			Woman woman = (Woman) this.preferenceList.get(0);
+			woman.addProposal(this);
+			this.preferenceList.removeFirst();
 		} catch (GenderMismatchException ex) {
 			ex.printStackTrace();
 		}

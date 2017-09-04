@@ -1,25 +1,24 @@
 package hu.algorithms.galeshapley;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Person {
 	
 
 	protected Integer id;
 	protected String name;
-	protected List<Person> preferenceList;
+	protected LinkedList<Person> preferenceList;
 	protected Person pair;
 	
 	public Person() {
-		this.preferenceList = new ArrayList<Person>();
+		this.preferenceList = new LinkedList<Person>();
 	}
 
 	public Person(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.preferenceList = new ArrayList<Person>();
+		this.preferenceList = new LinkedList<Person>();
 	}
 	
 	
@@ -40,11 +39,11 @@ public class Person {
 	}
 	
 
-	public List<Person> getPreferenceList() {
+	public LinkedList<Person> getPreferenceList() {
 		return preferenceList;
 	}
 	
-	public void setPreferenceList(List<Person> preferenceList) 
+	public void setPreferenceList(LinkedList<Person> preferenceList) 
 			throws GenderMismatchException {
 		this.preferenceList = preferenceList;
 	}

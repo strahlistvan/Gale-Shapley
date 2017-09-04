@@ -16,6 +16,8 @@ public class Woman extends Person {
 	
 	public static void pairGenderChecker(Person person) 
 			throws GenderMismatchException {
+		if (person == null)
+			return;
 		if (!(person instanceof Man)) {
 			System.err.println("#" + person.getId() + " " + person.getName()
 				+ " is not a Man!");
@@ -27,11 +29,10 @@ public class Woman extends Person {
 			throws GenderMismatchException {
 		
 		Woman.pairGenderChecker(man);
-	//	System.out.println(this.getName() + " pair is " + man.getName());
 		super.setPair(man);
 	}
 	
-	public void setPreferenceList(List<Person> womanList) 
+	public void setPreferenceList(LinkedList<Person> womanList) 
 			throws GenderMismatchException {
 		
 		for(Person w: womanList) {
@@ -74,6 +75,36 @@ public class Woman extends Person {
 				}
 			}
 			this.proposals.clear();
+		} catch (GenderMismatchException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void clearProporsals() {
+		try {
+			for (Man man : this.proposals) {
+				man.setPair(null);
+			}
+			this.proposals.clear();
+			
+		} catch (GenderMismatchException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void rejectAllButBest() {
+		try {
+			for (int i=0; i<this.preferenceList.size(); ++i) {
+				Man man = (Man) this.preferenceList.get(i);
+				if (this.proposals.contains(man)) {
+					this.clearProporsals();
+					this.proposals.add(man);
+					this.setPair(man);
+					man.setPair(this);
+					return;
+				}
+			}
+		//	this.proposals.clear();
 		} catch (GenderMismatchException ex) {
 			ex.printStackTrace();
 		}
