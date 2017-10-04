@@ -38,18 +38,18 @@ public class Man extends Person {
 		super.setPreferenceList(womanList);
 	}
 	
-	public Integer getPreferenceIndex(Man man) 
+	public Integer getPreferenceIndex(Person man) 
 			throws GenderMismatchException {
 		Man.pairGenderChecker(man);
 		return super.getPreferenceIndex(man);
 	}
 	
-	public boolean preferredFirstOverSecond(Man firstMan, Man secondMan)
+	public boolean preferredFirstOverSecond(Person first, Person second)
 			throws GenderMismatchException {
-		return super.preferredFirstOverSecond(firstMan, secondMan);
+		return super.preferredFirstOverSecond(first, second);
 	}
 	
-	public void proposeBestSingle() {
+/*	public void proposeBestSingle() {
 		try {
 			for (int i=0; i<this.preferenceList.size(); ++i) {
 				Woman woman = (Woman) this.preferenceList.get(i);
@@ -62,7 +62,7 @@ public class Man extends Person {
 			ex.printStackTrace();
 		}
 	}
-	
+*/	
 	public void proposeNextWoman() {
 		try {
 			Woman woman = (Woman) this.preferenceList.get(0);
@@ -72,4 +72,5 @@ public class Man extends Person {
 			ex.printStackTrace();
 		}
 	}
+	
 }

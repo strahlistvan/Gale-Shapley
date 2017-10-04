@@ -66,9 +66,9 @@ public class Person {
 		return this.preferenceList.indexOf(person);
 	}
 	
-	public boolean preferredFirstOverSecond(Man firstMan, Man secondMan)
+	public boolean preferredFirstOverSecond(Person first, Person second)
 			throws GenderMismatchException {
-		return (this.getPreferenceIndex(firstMan) < this.getPreferenceIndex(secondMan));
+		return (this.getPreferenceIndex(first) < this.getPreferenceIndex(second));
 	}
 
 	@Override

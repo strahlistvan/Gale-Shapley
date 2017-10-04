@@ -53,7 +53,7 @@ public class Main {
 				for (Woman woman : womanList) {
 					System.out.println(woman.getName()+" proporsals = " + woman.getProposals());
 					
-					if (woman.getProposals().size() >= 1)
+					if (woman.getProposals().size() > 1)
 						woman.rejectAllButBest();
 				}
 				

@@ -52,15 +52,15 @@ public class Woman extends Person {
 		this.proposals.add((Man) man);
 	}
 		
-	public Integer getPreferenceIndex(Man man) 
+	public Integer getPreferenceIndex(Person man) 
 			throws GenderMismatchException {
 		Woman.pairGenderChecker(man);
 		return super.getPreferenceIndex(man);
 	}
 	
-	public boolean preferredFirstOverSecond(Man firstMan, Man secondMan)
+	public boolean preferredFirstOverSecond(Person first, Person second)
 			throws GenderMismatchException {
-		return super.preferredFirstOverSecond(firstMan, secondMan);
+		return super.preferredFirstOverSecond(first, second);
 	}
 	
 	public void agreeBestProposal() {
