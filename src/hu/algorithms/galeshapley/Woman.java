@@ -63,7 +63,7 @@ public class Woman extends Person {
 		return super.preferredFirstOverSecond(first, second);
 	}
 	
-	public void agreeBestProposal() {
+/*	public void agreeBestProposal() {
 		try {
 			for (int i=0; i<this.preferenceList.size(); ++i) {
 				Man man = (Man) this.preferenceList.get(i);
@@ -79,7 +79,7 @@ public class Woman extends Person {
 			ex.printStackTrace();
 		}
 	}
-	
+*/	
 	public void clearProporsals() {
 		try {
 			for (Man man : this.proposals) {

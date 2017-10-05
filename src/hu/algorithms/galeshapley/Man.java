@@ -65,6 +65,9 @@ public class Man extends Person {
 */	
 	public void proposeNextWoman() {
 		try {
+			if (this.preferenceList == null || this.preferenceList.size() == 0) {
+				 return;
+			}
 			Woman woman = (Woman) this.preferenceList.get(0);
 			woman.addProposal(this);
 			this.preferenceList.removeFirst();
