@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Woman extends Person {
 	
-	private Set<Man> proposals = new HashSet<Man>();
+	private Set<Person> proposals = new HashSet<Person>();
 	
 	public Woman() {
 		super();
@@ -41,15 +41,23 @@ public class Woman extends Person {
 		super.setPreferenceList(womanList);
 	}
 	
-	public Set<Man> getProposals() {
+	public Set<Person> getProposals() {
 		return proposals;
+	}
+	
+	public void setProporsals(Set<Person> proporsals) 
+			throws GenderMismatchException {
+		for (Person p: proporsals) {
+			Woman.pairGenderChecker(p);
+		}
+		this.proposals = proporsals;
 	}
 	
 	public void addProposal(Person man) 
 			throws GenderMismatchException {
 		Woman.pairGenderChecker(man);
 		
-		this.proposals.add((Man) man);
+		this.proposals.add(man);
 	}
 		
 	public Integer getPreferenceIndex(Person man) 
@@ -82,8 +90,8 @@ public class Woman extends Person {
 */	
 	public void clearProporsals() {
 		try {
-			for (Man man : this.proposals) {
-				man.setPair(null);
+			for (Person p : this.proposals) {
+				p.setPair(null);
 			}
 			this.proposals.clear();
 			

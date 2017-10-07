@@ -2,6 +2,7 @@ package hu.test.galeshapley;
 
 import static org.junit.Assert.*;
 import java.util.LinkedList;
+import org.junit.Before;
 import org.junit.Test;
 import hu.algorithms.galeshapley.*;
 
@@ -11,8 +12,8 @@ public class ManTest extends Person {
 	LinkedList<Person> womanList = new LinkedList<Person>();
 	LinkedList<Person> mixedList = new LinkedList<Person>();
 
-	
-	public ManTest() {
+	@Before
+	public void setUp() {
 		womanList.add(new Woman(200, "Anne"));
 		womanList.add(new Woman(201, "Bella"));
 		womanList.add(new Woman(202, "Zynthia"));
@@ -39,7 +40,7 @@ public class ManTest extends Person {
 
 	@Test(expected = GenderMismatchException.class)
 	public void testPairGenderCheckerError() throws GenderMismatchException  {
-		Man.pairGenderChecker(new Man());
+		Man.pairGenderChecker(new Man(102, "Thomas"));
 	}
 
 	@Test
@@ -54,23 +55,22 @@ public class ManTest extends Person {
 	
 	@Test(expected = GenderMismatchException.class)
 	public void tesPairGenderCheckerUnisexPerson() throws GenderMismatchException {
-		Man.pairGenderChecker(new Person());
+		Man.pairGenderChecker(new Person(999, "Jesse"));
 	}
 	
 	@Test 
 	public void proposeNextWomanTest() {
 		try {
 		
-		man.proposeNextWoman();
-		man.proposeNextWoman();
-		man.proposeNextWoman();
-		man.proposeNextWoman();
-		
-		assertEquals(man.getPreferenceList().size(), 0);
+			man.proposeNextWoman();
+			man.proposeNextWoman();
+			man.proposeNextWoman();
+			man.proposeNextWoman();
+			assertEquals(man.getPreferenceList().size(), 0);
+			
 		} catch (IndexOutOfBoundsException ex) {
 			ex.printStackTrace();
 			fail("Index out of bounds in preference list");
-			
 		}
 	}
 
