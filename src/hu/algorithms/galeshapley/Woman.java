@@ -104,13 +104,11 @@ public class Woman extends Person {
 		try {
 			for (int i=0; i<this.preferenceList.size(); ++i) {
 				Man man = (Man) this.preferenceList.get(i);
-				System.out.println("Man is #" + man.getId() + " " + man.getName());
 
 				if (this.proposals.contains(man)) {
 					this.clearProporsals();
 					this.proposals.add(man);
 					this.setPair(man);
-					System.out.println("Man is the pair #" + man.getId() + " " + man.getName());
 					man.setPair(this);
 					return;
 				}
