@@ -76,4 +76,14 @@ public class Man extends Person {
 		}
 	}
 	
+	@Override
+	public boolean equals(Object p) {
+        boolean retVal = false;
+   
+        if (p instanceof Man){
+            Man man = (Man) p;
+            retVal = man.getId().equals(this.id);            
+        }
+        return retVal;
+	}
 }

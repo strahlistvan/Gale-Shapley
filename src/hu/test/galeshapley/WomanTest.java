@@ -1,12 +1,14 @@
 package hu.test.galeshapley;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import hu.algorithms.galeshapley.*;
@@ -16,6 +18,7 @@ public class WomanTest {
 	Woman woman = new Woman(2, "Sandra Bullock");
 	Set<Person> manSet = new HashSet<Person>();
 	Set<Person> mixedSet = new HashSet<Person>();
+	LinkedList<Person> manList = new LinkedList<Person>();
 
 	@Before
 	public void setUp() {
@@ -26,6 +29,13 @@ public class WomanTest {
 		mixedSet.add(new Man(101, "Ted"));
 		mixedSet.add(new Man(102, "Barney"));
 		mixedSet.add(new Woman(203, "Penny"));
+		
+		manList.add(new Man(111, "Jockey"));
+		manList.add(new Man(112, "Bobby"));
+		manList.add(new Man(102, "Barney"));
+		manList.add(new Man(103, "Sheldon"));
+		manList.add(new Man(101, "Ted"));
+		
 		}
 	
 	@Test(expected = GenderMismatchException.class)
@@ -82,6 +92,33 @@ public class WomanTest {
 			fail("clearProporsalsTest failed");
 			ex.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testEquals() {
+		woman.equals(new Woman(2, "Jennifer Lawrence"));
+	}
+	
+	@Test
+	public void testRejectAllButRest() {
+		try {
+			woman.setProporsals(manSet);
+			woman.setPreferenceList(manList);
+			
+			woman.rejectAllButBest();
+			
+			assertNotNull("testRejectAllButRest failed. Woman has no pair.", woman.getPair());
+			assertEquals("testRejectAllButRest failed. Woman's pair is "+woman.getPair().getName(), 
+					Integer.valueOf(102), woman.getPair().getId());
+						
+		} catch (GenderMismatchException ex) {
+			fail("testRejectAllButRest failed");
+			ex.printStackTrace();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
 	}
 
 }

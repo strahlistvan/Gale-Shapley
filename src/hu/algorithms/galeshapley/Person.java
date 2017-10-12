@@ -82,4 +82,22 @@ public class Person {
 		return builder.toString();
 	}	
 	
+	@Override
+	public boolean equals(Object p) {
+        boolean retVal = false;
+
+        if (p instanceof Person){
+            Person person = (Person) p;
+            retVal = person.getId().equals(this.getId());            
+        }
+        return retVal;
+	}
+	
+	@Override
+	public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;		
+	}
+	
 }
