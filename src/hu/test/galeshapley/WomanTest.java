@@ -2,6 +2,7 @@ package hu.test.galeshapley;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -82,7 +83,8 @@ public class WomanTest {
 
 			woman.clearProporsals();
 						
-			assertEquals(0, woman.getProposals().size());
+			assertEquals("clearProporsalsTest failed. Proporsals set cannot be cleared",
+					0, woman.getProposals().size());
 			
 			for (Person p : oldProposals) {
 				assertTrue(p.isSingle());
@@ -100,7 +102,7 @@ public class WomanTest {
 	}
 	
 	@Test
-	public void testRejectAllButRest() {
+	public void testRejectAllButBest() {
 		try {
 			woman.setProporsals(manSet);
 			woman.setPreferenceList(manList);
@@ -115,10 +117,43 @@ public class WomanTest {
 			fail("testRejectAllButRest failed");
 			ex.printStackTrace();
 		}
-		catch (Exception ex) {
+
+	}
+
+	@Test
+	public void testRejectAllButBestWithoutProporsals() {
+		try {
+			woman.setProporsals(new HashSet<Person>());
+			woman.setPreferenceList(manList);
+			
+			woman.rejectAllButBest();
+			
+			assertNull("testRejectAllButBestWithoutProporsals failed. Woman has pair.", woman.getPair());
+						
+		} catch (GenderMismatchException ex) {
+			fail("testRejectAllButBestWithoutProporsals failed");
 			ex.printStackTrace();
 		}
 
 	}
 
+	@Test
+	public void testRejectAllButBestWithoutPreference() {
+		try {
+			woman.setProporsals(manSet);
+			woman.setPreferenceList(new LinkedList<Person>() );
+			
+			woman.rejectAllButBest();
+			
+			assertNull("testRejectAllButBestWithoutPreference failed. Woman has pair.", woman.getPair());
+						
+		} catch (GenderMismatchException ex) {
+			fail("testRejectAllButBestWithoutPreference failed");
+			ex.printStackTrace();
+		}
+
+	}
+	
+	
+	
 }
