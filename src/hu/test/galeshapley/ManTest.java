@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import hu.algorithms.galeshapley.*;
 
-public class ManTest extends Person {
+public class ManTest {
 
 	Man man = new Man(1, "Chuck Norris");
 	LinkedList<Person> womanList = new LinkedList<Person>();
