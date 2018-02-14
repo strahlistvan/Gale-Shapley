@@ -3,7 +3,7 @@ This will be an object oriented implementation of Gale-Shapley's algorithm for s
 
 The stable marriage/matching problem is a problem to find a stable matching between two equally sized sets of elements given an ordering of preferences for each element. A matching is a mapping from the elements of one set to the elements of the other set. A matching is not stable if There is an element A of the first matched set which prefers an element B of the second matched set over the element to which A is already matched, and B also prefers A over the element to which B is already matched. [Source: Wikipedia](https://en.wikipedia.org/wiki/Stable_marriage_problem).
 
-I made an object oriented Java implementation for this algorithm.
+I made an object oriented Java implementation for this algorithm. I also wrote a [blog post](https://comscibloghun.wordpress.com/2017/09/04/stabil-parositas-gale-shapley-algoritmussal/) to my site (in Hungarian).
 
 ## Classes
 
